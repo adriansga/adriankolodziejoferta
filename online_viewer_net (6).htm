@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insulin Reset 12 — Kamil Maczek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d946ef; /* Nowoczesny magenta/róż pod grupę docelową */
+            --primary-hover: #c026d3;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #334155;
+            --bg-light: #f8fafc;
+            --accent: #f59e0b;
+            --green: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero / Nagłówek strony */
+        header {
+            padding: 50px 0;
+            text-align: center;
+            background: linear-gradient(180deg, #fdf4ff 0%, #ffffff 100%);
+        }
+
+        .badge {
+            background-color: #ffaec9;
+            color: #bc0048;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .target-box {
+            font-style: italic;
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            color: #475569;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        /* Sekcje tekstu */
+        section {
+            padding: 30px 0;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            color: var(--dark);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background-color: #fef08a;
+            padding: 2px 6px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* Listy */
+        ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+        }
+
+        ul li::before {
+            content: "➔";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .check-list li::before {
+            content: "✓";
+            color: var(--green);
+        }
+
+        /* Wizytówka Kamila */
+        .author-box {
+            background-color: var(--bg-light);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        /* Blok Oferty (Czarny kontrastowy kontener) */
+        .offer-stack {
+            background-color: var(--dark);
+            color: #e2e8f0;
+            border-radius: 16px;
+            padding: 40px 30px;
+            margin: 50px 0;
+        }
+
+        .offer-stack h2, .offer-stack h3 {
+            color: #ffffff;
+        }
+
+        .mechanism-card {
+            background-color: var(--dark-light);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+        }
+
+        /* Karty Bonusów */
+        .bonus-card {
+            background-color: #ffffff;
+            color: var(--dark);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .bonus-title {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .objection {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* Tabela Cennika */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background-color: #ffffff;
+            color: var(--dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .price-table th, .price-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .price-table th {
+            background-color: #f1f5f9;
+            font-weight: 700;
+        }
+
+        .price-table tr.total-row {
+            font-weight: 700;
+            background-color: #fff1f2;
+            font-size: 1.2rem;
+            color: #be123c;
+        }
+
+        /* Gwarancja */
+        .guarantee-box {
+            border: 3px dashed var(--green);
+            background-color: #f0fdf4;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        /* Urgency box */
+        .urgency-badge {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            color: #b45309;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            margin: 30px 0;
+        }
+
+        /* PRZYCISKI CTA */
+        .cta-wrapper {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 800;
+            padding: 22px 40px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px -5px rgba(217, 70, 239, 0.5);
+            transition: all 0.2s ease;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .btn-main:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(217, 70, 239, 0.6);
+        }
+
+        .cta-subtext {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 15px;
+        }
+
+        .ps-box {
+            background-color: var(--bg-light);
+            border-top: 4px solid var(--primary);
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            margin-top: 60px;
+        }
+
+        /* Responsywność */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .offer-stack { padding: 25px 15px; }
+            .btn-main { font-size: 1.1rem; padding: 18px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <span class="badge">Program dla kobiet z insulinoopornością</span>
+            <h1>Jak kobiety z insulinoopornością wracają do figury sprzed 10 lat — bez głodówek, bez siłowni codziennie i bez liczenia każdej kalorii</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="target-box">
+            Ten list jest dla Ciebie, jeśli masz insulinooporność (albo podejrzewasz że możesz mieć) i czujesz się zagubiona — bo nikt Ci nie powiedział co teraz zrobić.
+        </div>
+
+        <section>
+            <h2>Czy to brzmi znajomo?</h2>
+            <p>Wstajesz rano i zamiast wypoczęta — <strong>jesteś zmęczona</strong>.</p>
+            <p>W nocy budzisz się o 3:00 i nie możesz zasnąć. Leżysz i myślisz. Myślisz o pracy, o tym co jutro, o tym że znowu nie wyspałaś się normalnie.</p>
+            <p>W ciągu dnia masz ochotę na słodkie. Zjadasz, czujesz się lepiej przez chwilę — i po godzinie znowu opadasz z sił.</p>
+            <p>A waga? Rośnie. Mimo że "nie jesz dużo". Mimo że "starasz się".</p>
+            <p>Mówisz sobie: <em>to stres. Mam ciężką pracę. Tyle jeżdżę, tyle rozmawiam, tyle sprzedaję. Ciało po prostu reaguje na stres.</em></p>
+            <p>I masz rację — ciało reaguje. Ale nie na stres. <span class="highlight">Reaguje na insulinę.</span></p>
+        </section>
+
+        <section>
+            <h2>Dlaczego żadna dotychczasowa dieta nie zadziałała?</h2>
+            <p>Bo była zaprojektowana dla zdrowego metabolizmu.</p>
+            <p>Twój metabolizm działa inaczej. Insulinooporność to stan, w którym Twoje komórki przestają słuchać insuliny. Glukoza nie wchodzi do komórek tak jak powinna. Trzustka produkuje coraz więcej insuliny żeby to "naprawić".</p>
+            <p><strong>Efekt?</strong> Odkładasz tłuszcz zamiast go spalać. Budzisz się w nocy bo poziom cukru skacze. Masz zachcianki na słodkie bo ciało desperacko szuka energii.</p>
+            <p>To nie kwestia silnej woli. <strong>To biochemia.</strong></p>
+            <p>I właśnie dlatego liczenie kalorii, głodówki i "zdrowe odżywianie z internetu" nie działają — bo nikt nie powiedział Ci jak jeść pod insulinę.</p>
+        </section>
+
+        <section>
+            <h2>"Lekarz powiedział że mam insulinooporność i... tyle."</h2>
+            <p>Znam tę historię na pamięć.</p>
+            <p>Wynik badań. Diagnoza. I zdanie: <em>"proszę zmienić dietę i więcej się ruszać".</em></p>
+            <p>Super. Ale JAK? Co konkretnie jeść? O której? Z czym? Ile? Jakich produktów unikać? Dlaczego ten jogurt "fit" z Biedronki to najgorszy pomysł przy IO?</p>
+            <p>Na te pytania większość kobiet nie dostaje odpowiedzi. I właśnie tu wchodzę ja.</p>
+        </section>
+
+        <section class="author-box">
+            <h3>Kim jestem i dlaczego możesz mi zaufać</h3>
+            <p>Nazywam się <strong>Kamil Maczek</strong> i jestem dietetykiem specjalizującym się w insulinooporności.</p>
+            <p>Przez <strong>2 lata pracowałem klinicznie w Medikor</strong> — jednej z największych sieci poradni dietetycznych w Polsce. Przez ten czas pracowałem z dziesiątkami pacjentów z insulinoopornością. Widziałem co działa, co nie działa i dlaczego.</p>
+            <p>Nie uczę teorii z podręcznika. Uczę tego co widziałem w praktyce — i co przynosi realne efekty.</p>
+        </section>
+
+        <section>
+            <h2>Jak wygląda powrót do figury sprzed 10 lat?</h2>
+            <p>Wyobraź sobie że budzisz się rano — i jesteś wypoczęta. Nie leżysz w łóżku i nie walczysz ze sobą żeby wstać. Po prostu wstajesz. Masz energię.</p>
+            <p>W pracy — skupiona. Bez mgły w głowie. Bez walki z sennością po lunchu.</p>
+            <p>Wieczorem — nie napadasz na słodkie. Jesz kolację, jesteś najedzona, idziesz spać.</p>
+            <p>I w ciągu kilku tygodni zaczynasz zauważać: spodnie trochę luźniejsze. Brzuch trochę mniej. Twarz cieńsza.</p>
+            <p>Nie dlatego że głodujesz. Dlatego że Twoje ciało w końcu dostało odpowiedni sygnał — i zaczęło działać tak jak powinno. To jest możliwe. To jest Twój plan.</p>
+        </section>
+
+        <section>
+            <h2>Przedstawiam: Insulin Reset 12</h2>
+            <p>To 12-tygodniowy program online stworzony specjalnie dla kobiet z insulinoopornością.</p>
+            <p>Nie jest to ogólna dieta "na odchudzanie". To <strong>The Insulin Reset Method</strong> — trzystopniowy protokół żywieniowy oparty na 2 latach pracy klinicznej, zaprojektowany tak żeby:</p>
+            <ul class="check-list">
+                <li>Obniżyć poziom insuliny i ustabilizować poziom cukru we krwi</li>
+                <li>Przywrócić spokojny, nieprzerwany sen</li>
+                <li>Uruchomić spalanie tłuszczu (szczególnie z brzucha)</li>
+                <li>Dać Ci energię którą pamiętasz z młodości</li>
+            </ul>
+        </section>
+
+        <section class="offer-stack">
+            <h2>Co dokładnie dostajesz w programie?</h2>
+            <p style="color: #94a3b8; margin-bottom: 25px;">Kompletna architektura programu i wsparcia:</p>
+
+            <div class="mechanism-card">
+                <h3>🎯 Unikalny Mechanizm: "The Insulin Reset Method"</h3>
+                <p style="margin-top: 10px; font-size: 1rem;">Trzystopniowy protokół diety i stylu życia stworzony specjalnie dla kobiet z insulinoopornością — oparty na 2 latach praktyk klinicznych w Medikor. Nie ogólna dieta "zdrowotna", lecz precyzyjny plan dostosowany do rytmu insulinowego Twojego ciała.</p>
+            </div>
+
+            <h3>🔥 RDZEŃ PROGRAMU — "Insulin Reset 12"</h3>
+            <p style="color: var(--accent); font-weight: bold;">Program 12-tygodniowy online | Wartość: 5 997 zł</p>
+            
+            <ul style="margin-top: 15px;">
+                <li><strong>Indywidualny plan żywieniowy</strong> skrojony pod insulinooporność (nie szablon — Twój plan dostosowany do zapracowanej kobiety w trasie)</li>
+                <li><strong>Cotygodniowe konsultacje online 1:1 z Kamilem</strong> (12 sesji)</li>
+                <li><strong>Bieżący kontakt</strong> przez Messenger między sesjami</li>
+                <li><strong>Monitoring wyników i korekty planu</strong> co 2 tygodnie</li>
+                <li><strong>Pełna analiza badań i wyników</strong> (HOMA-IR, glukoza, insulina na czczo) przekazana prostym językiem</li>
+            </ul>
+
+            <h3 style="margin-top: 40px; border-bottom: 1px solid #334155; padding-bottom: 10px;">🎁 BONUSY (Rozwiązują konkretne obiekcje)</h3>
+
+            <div class="bonus-card">
+                <span class="bonus-title">Bonus #1</span>
+                <strong>"Gotowe zakupy i posiłki na 7 dni" | Wartość: 497 zł</strong>
+                <p style="font-size: 0.95rem; margin-top: 5px; margin-bottom: 0;">Lista zakupów + 7 dni gotowych posiłków dla zapracowanej kobiety.</p>
+                <span class="objection">*(Obiekcja: "Nie mam czasu gotować skomplikowanych rzeczy")*</span>
+            </div>
+
+            <div class="bonus-card">
+                <span class="bonus-title">Bonus #2</span>
+                <strong>"Sen i insulina — protokół wieczorny" | Wartość: 297 zł</strong>
+                <p style="font-size: 0.95rem; margin-top: 5px; margin-bottom: 0;">Konkretny wieczorny rytuał (dieta + nawyki) który reguluje insulinę i poprawia sen już w 2. tygodniu.</p>
+                <span class="objection">*(Obiekcja: "Budzę się w nocy i nie wiem dlaczego")*</span>
+            </div>
+
+            <div class="bonus-card">
+                <span class="bonus-title">Bonus #3</span>
+                <strong>"Co mówić lekarzowi — gotowe pytania na wizytę" | Wartość: 197 zł</strong>
+                <p style="font-size: 0.95rem; margin-top: 5px; margin-bottom: 0;">Lista pytań do endokrynologa i diabetologa + interpretacja wyników badań prostym językiem.</p>
+                <span class="objection">*(Obiekcja: "Lekarz powiedział mam IO i... tyle. Zero wskazówek.")*</span>
+            </div>
+
+            <h3 style="margin-top: 40px; text-align: center;">Podsumowanie finansowe</h3>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Składnik programu</th>
+                        <th>Wartość</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Program Insulin Reset 12</td>
+                        <td>5 997 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Bonus #1 Gotowe zakupy</td>
+                        <td>497 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Bonus #2 Protokół wieczorny</td>
+                        <td>297 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Bonus #3 Co mówić lekarzowi</td>
+                        <td>197 zł</td>
+                    </tr>
+                    <tr style="font-weight: bold; background-color: #f8fafc; color: #64748b;">
+                        <td>RAZEM:</td>
+                        <td><span style="text-decoration: line-through;">6 988 zł</span></td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>TWOJA INWESTYCJA:</td>
+                        <td>2 997 zł</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; font-weight: bold; color: #f43f5e; font-size: 1.2rem; margin-bottom: 0;">Oszczędzasz: 3 991 zł (57% taniej)</p>
+        </section>
+
+        <div class="urgency-badge">
+            ⚠️ Aktualnie przyjmuję maksymalnie <strong>5 nowych klientek</strong> w tym miesiącu (limit wynika z restrykcyjnego czasu potrzebnego na indywidualną pracę 1:1).
+        </div>
+
+        <div class="cta-wrapper">
+            <a href="TWÓJ_LINK_DO_FORMULARZA_LUB_ZAKUPU" class="btn-main">Chcę zarezerwować miejsce →</a>
+            <p class="cta-subtext">Po kliknięciu wypełnisz krótką ankietę (5 minut) — żebym wiedział z czym zaczynamy. Następnie skontaktuję się z Tobą w ciągu 24 godzin.</p>
+        </div>
+
+        <section class="guarantee-box">
+            <h3 style="color: #065f46; margin-bottom: 15px;">🛡️ GWARANCJA — "Działamy albo zwracam"</h3>
+            <p>Jeśli po 4 tygodniach sumiennego stosowania planu nie zauważysz żadnej poprawy (sen, energia, waga) — zwracam Ci 100% wpłaconej kwoty. Bez pytań, bez tłumaczenia się.</p>
+            <p style="margin-bottom: 0; font-style: italic; color: #047857;">"Dlaczego mogę to obiecać? Bo po 2 latach pracy klinicznej z insulinoopornością wiem, że odpowiednio ułożona dieta działa — zawsze, gdy jest stosowana."</p>
+        </section>
+
+        <section class="ps-box">
+            <p><strong>P.S.</strong> Jeśli czytasz to P.S. bo resztę przescrollowałaś — oto sedno:</p>
+            <p>Masz insulinooporność. Tyjesz i nie śpisz nie dlatego że jesteś leniwa albo słaba. Twoje ciało dostaje złe sygnały. Da się to naprawić — konkretnym planem, krok po kroku.</p>
+            <p>Program Insulin Reset 12 kosztuje 2 997 zł i jest objęty pełną gwarancją zwrotu po 4 tygodniach. Wolnych miejsc zostało tylko 5.</p>
+            
+            <div class="cta-wrapper" style="margin-top: 25px; margin-bottom: 0;">
+                <a href="TWÓJ_LINK_DO_FORMULARZA_LUB_ZAKUPU" class="btn-main" style="font-size: 1.1rem; padding: 16px 30px;">Rezerwuję miejsce →</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 50px 0; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid #e2e8f0; margin-top: 5px;">
+        <p>&copy; 2026 Kamil Maczek — Insulin Reset Method. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+</body>
+</html>
